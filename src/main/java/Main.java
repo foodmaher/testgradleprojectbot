@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 public final class Main {
     public static void main(final String[] args) {
-        ArrayList<String> strings = new ArrayList<String>(2);
+        ArrayList<Object> strings = new ArrayList<Object>(2);
+        ArrayList<String> n = new ArrayList<String>();
+        n.add("Hi");
+        n.add("23554");
         strings.add(0, "Maher");
         strings.add(1, "Baghdad");
         strings.add(2, "20");
+        strings.add(3, n);
         JSON_database.wirteDataAndCreateJSON(strings);
     }
 

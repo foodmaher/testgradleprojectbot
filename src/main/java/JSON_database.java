@@ -5,7 +5,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class JSON_database {
@@ -14,8 +13,8 @@ public class JSON_database {
         System.out.println("No no no, this file library for widgets :(");
     }
 
-    public static void wirteDataAndCreateJSON (final ArrayList<String> array){
-        final ArrayList<String> list = new ArrayList<String>(2);
+    public static void wirteDataAndCreateJSON (final ArrayList<Object> array){
+        final ArrayList<Object> list = new ArrayList<Object>(3);
         list.addAll(array);
         JSONObject object = new JSONObject();
         JSONObject jsonObject = new JSONObject();
@@ -23,6 +22,7 @@ public class JSON_database {
         jsonObject.put("Name", list.get(0));
         jsonObject.put("City", list.get(1));
         jsonObject.put("Age", list.get(2));
+        jsonObject.put("Commands", list.get(3));
 
         object.put("List", jsonObject);
         JSONArray jsonArray = new JSONArray();
@@ -83,12 +83,10 @@ public class JSON_database {
     private static void orderArray(JSONObject obj){
         JSONObject index = (JSONObject) obj.get("List");
 
-        ArrayList<String> n = new ArrayList<String>();
-        n.add("Hi");
-        n.add("23554");
+
 
         initClass initClassn = new initClass(
-                (String) index.get("Name"),(String) index.get("City"), (String) index.get("Age"), n,"name", "city", "age", "words"
+                (String) index.get("Name"),(String) index.get("City"), (String) index.get("Age"), (ArrayList<String>) index.get("Commands"),"name", "city", "age", "words"
         );
 
         Map<String, Object> b = initClassn.toArrayMap();
