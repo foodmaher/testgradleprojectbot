@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+mainClassName = 'Main'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'com.discord4j', name: 'discord4j-core', version: '3.1.0'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': "$mainClassName"
+        )
+    } from{
+        configurations.compile.collect {it.isDirectory() ? it : zipTree(it)}
+    }
+}
