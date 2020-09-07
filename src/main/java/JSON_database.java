@@ -5,6 +5,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class JSON_database {
 
@@ -78,13 +80,21 @@ public class JSON_database {
         }
     }
 
-    public static void orderArray(JSONObject obj){
+    private static void orderArray(JSONObject obj){
         JSONObject index = (JSONObject) obj.get("List");
-        final ArrayList<String> strings = new ArrayList<String>(index.size());
-        for (int x = 0; x < obj.size(); x++){
-            strings.addAll(obj.values());
-        }
-        System.out.println(strings);
+
+        ArrayList<String> n = new ArrayList<String>();
+        n.add("Hi");
+        n.add("23554");
+
+        initClass initClassn = new initClass(
+                (String) index.get("Name"),(String) index.get("City"), (String) index.get("Age"), n,"name", "city", "age", "words"
+        );
+
+        Map<String, Object> b = initClassn.toArrayMap();
+        System.out.println(b);
+
     }
+
 
 }
